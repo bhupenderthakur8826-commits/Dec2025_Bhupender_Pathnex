@@ -8,11 +8,17 @@ MY 2ND PROGRAM-
   hosts: all
   become: yes
 
+commment#This section tells Ansible:
+“Run this playbook on all my servers.”
+
   tasks:
     - name: Install nginx
       yum:
         name: nginx
         state: present
+
+commment#This task tells Ansible:
+“Install Nginx on the server using yum.”
 
     - name: Enable nginx
       service:
@@ -20,4 +26,6 @@ MY 2ND PROGRAM-
         state: started
         enabled: yes
 
+commment# This task tells Ansible:
+“Start nginx now and make sure it always starts automatically when the server reboots.”
 
