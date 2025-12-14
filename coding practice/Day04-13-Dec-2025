@@ -1,0 +1,37 @@
+Day 04 — Ansible, Terraform & Kubernetes Basics
+# Ansible — Install Apache and Start Service
+
+- name: Install and Start Apache
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+# COMMENT - Apache installed
+ Apache running
+ Apache auto-starts on reboot
+
+# Terraform — EC2 Instance (t3.medium)
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "PathnexEC2" {
+  ami           = "ami-0abcd1234abcd1234"
+  instance_type = "t3.medium"
+  tags = {
+    Name = "Pathnex-T3"
+# COMMENT - EC2 instance launched
+Type: t3.mediuM
+Tagged as Pathnex-T3
+  }
+}
