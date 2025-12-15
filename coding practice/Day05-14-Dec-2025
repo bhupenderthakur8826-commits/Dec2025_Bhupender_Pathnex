@@ -1,0 +1,60 @@
+## 🔹 Ansible — Install Multiple Packages
+
+---
+- name: Install packages for Pathnex
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install tools
+      yum:
+        name:
+          - git
+          - wget
+        state: present
+# comment_# This playbook installs git & wget
+Uses YAML indentation
+Uses Ansible yum module
+Safe to run multiple times
+
+## 🔹 Terraform — EC2 with Key Pair (c6i.8xlarge)
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_key_pair" "PathnexKey" {
+  key_name   = "PathnexKey"
+  public_key = "ssh-rsa AAAA...."
+}
+
+resource "aws_instance" "PathnexEC2" {
+  ami           = "ami-0abcd1234abcd1234"
+  instance_type = "c6i.8xlarge"
+  key_name      = aws_key_pair.PathnexKey.key_name
+
+  tags = {
+    Name = "Pathnex-EC2"
+  }
+}
+#comment# Creates AWS Key Pair
+Launches EC2 instance
+Uses Terraform resource dependency
+Tagged for easy identification
+
+## 🔹 Kubernetes — Create ClusterIP Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pathnex-service
+spec:
+  selector:
+    app: pathnex-app
+  ports:
+    - port: 80
+      targetPort: 80
+#comment# Kubernetes Service
+ Selects Pods using labels
+ Routes traffic to containers
+ Default type = ClusterIP
