@@ -1,0 +1,21 @@
+## 🔹 Kubernetes — Resource Limits
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pathnex-limited-pod
+## apiVersion: v1 → Using core Kubernetes API
+kind: Pod → Creating a Pod
+name → Pod name
+spec:
+  containers:
+    - name: app
+      image: nginx
+## spec → Desired state of the Pod
+container name → app
+image → nginx container image
+      resources:
+        limits:
+          memory: "256Mi"
+          cpu: "500m"
+
