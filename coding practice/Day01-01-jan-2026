@@ -5,7 +5,7 @@ hosts: all
 become: yes
 
 tasks:
--name: install Naginx
+-name: install Nginx
 yum:
-name: Naginx
+name: Nginx
 state: present
