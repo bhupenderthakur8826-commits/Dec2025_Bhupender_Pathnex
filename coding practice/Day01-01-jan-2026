@@ -1,0 +1,11 @@
+## Ansible Task — Install Nginx on ec2 Server
+--- yaml
+name: install Nginx on ec2 server
+hosts: all
+become: yes
+
+tasks:
+-name: install Naginx
+yum:
+name: Naginx
+state: present
