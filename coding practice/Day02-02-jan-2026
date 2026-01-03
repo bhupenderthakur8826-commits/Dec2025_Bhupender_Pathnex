@@ -1,0 +1,43 @@
+# SERVICE AND TAGS USING TERRAFOME 
+# ANSIBLE PLYBOOK IN YAML INSTALL NGINX ON SERVERS 
+
+name: install nginx on ec2 server
+hosts: all
+become: yes
+ tasks:
+    - name: Install nginx
+      yum:
+        name: nginx
+        state: present
+name: enable nginx
+services:
+name: nginx
+state: started
+enable: yes
+
+
+ ## Terraform — EC2 with Tags (r5.2xlarge)
+providers  "aws" {
+region = "us-east01"
+}
+resorces = "aws_instance" "ec2_server"
+{ ami  ="iame23mnb45mnbh"
+instance_ type = "r5.2xlarge"
+tags = {
+name = "ec2_server"
+enviroment = "devoes"
+owner = "bhupender"
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
