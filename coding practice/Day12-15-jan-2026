@@ -1,0 +1,43 @@
+### k8s deployment yaml file for deploy nginx
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+#### Pod is NOT running in a Kubernetes cluster, use the following step-by-step troubleshooting
+
+  →  kubectl get pods  
+      → kubectl describe pod
+ → kubectl logs
+      → kubectl get events
+→ kubectl get nodes
+
+
+#### OOMKilled happens when a container exceeds its memory limit, the kernel kills it with exit code 137. We identify it using kubectl
+     describe pod, check memory limits, logs, and node memory pressure, then fix by increasing memory or optimizing the app.
+
+
+
+
+
+
+
+
+
